@@ -26,18 +26,18 @@ func (r *CreateBookRequest) Validate() error {
 	if r.Year == "" {
 		return errParamRequired("year", "bool")
 	}
-  return nil
+	return nil
 }
 
-type UpdateOpeningRequest struct {
+type UpdateBookRequest struct {
 	Name   string `json:"name"`
 	Author string `json:"author"`
 	Genre  string `json:"genre"`
 	Year   string `json:"year"`
 }
 
-func (r *UpdateOpeningRequest) Validate() error {
-	if r.Name == "" || r.Author == "" || r.Genre == "" || r.Year == ""{
+func (r *UpdateBookRequest) Validate() error {
+	if r.Name == "" || r.Author == "" || r.Genre == "" || r.Year == "" {
 		return nil
 	}
 	return fmt.Errorf("at least one valid field must be provided")
