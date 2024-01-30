@@ -1,8 +1,8 @@
 package main
 
 import (
-	"goportunities/config"
-	"goportunities/router"
+	"gobooks/config"
+	"gobooks/router"
 )
 
 var (
