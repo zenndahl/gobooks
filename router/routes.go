@@ -19,11 +19,11 @@ func initializeRoutes(router *gin.Engine) {
 
 	v1 := router.Group(basePath)
 	{
-		//v1.GET("/books", handler.ListOpeningsHandler)
-		//v1.GET("/books", handler.ShowOpeningHandler)
+		v1.GET("/books", handlers.ListBooksHandler)
+		v1.GET("/books", handlers.ShowBookHandler)
 		v1.POST("/books", handlers.CreateBookHandler)
-		//v1.DELETE("/books", handler.DeleteOpeningHandler)
-		//v1.PUT("/books", handler.UpdateOpeningHandler)
+		v1.DELETE("/books", handlers.DeleteBookHandler)
+		v1.PUT("/books", handlers.UpdateBookHandler)
 	}
 
 	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))

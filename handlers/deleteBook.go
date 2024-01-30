@@ -26,5 +26,5 @@ func DeleteBookHandler(ctx *gin.Context) {
 		return
 	}
 
-	sendSuccess(ctx, "delete-opening", book)
+	sendSuccess(ctx, "delete-book", book)
 }
