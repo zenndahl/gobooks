@@ -4,7 +4,6 @@ import (
 	"gobooks/schemas"
 	"math/rand"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,12 +16,11 @@ func ShowRandomBookHandler(ctx *gin.Context) {
 	db.Model(&books).Count(&count)
 	bookCount = int(count)
 
-	logger.Info(bookCount)
-	num := strconv.Itoa(rand.Intn(bookCount))
+	num := rand.Intn(bookCount)
+	logger.Info(num)
 
-	id := ctx.Query(num)
 	book := schemas.Book{}
-	if err := db.First(&book, id).Error; err != nil {
+	if err := db.First(&book, num).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, "error finding book")
 		return
 	}
