@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create book
+// @Description Create a new book entry
+// @Tags Books
+// @Accept json
+// @Produce json
+// @Param request body CreateBookRequest true "Request body"
+// @Success 200 {object} CreateBookResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /book [post]
 func CreateBookHandler(ctx *gin.Context) {
 	request := CreateBookRequest{}
 
@@ -18,11 +30,11 @@ func CreateBookHandler(ctx *gin.Context) {
 		return
 	}
 
-  book := schemas.Book{
-    Name:   request.Name,
-    Author: request.Author,
-    Genre:  request.Genre,
-    Year:   request.Year,
+	book := schemas.Book{
+		Name:   request.Name,
+		Author: request.Author,
+		Genre:  request.Genre,
+		Year:   request.Year,
 	}
 
 	if err := db.Create(&book).Error; err != nil {

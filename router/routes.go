@@ -1,30 +1,30 @@
-
 package router
 
 import (
+	//docs "gobooks/docs"
+
 	"gobooks/handlers"
 
-	docs "gobooks/docs"
-
 	"github.com/gin-gonic/gin"
-	swaggerfiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	//swaggerfiles "github.com/swaggo/files"
+	//ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func initializeRoutes(router *gin.Engine) {
 	handlers.InitHandler()
 
 	basePath := "/api/v1"
-	docs.SwaggerInfo.BasePath = basePath
+	//docs.SwaggerInfo.BasePath = basePath
 
 	v1 := router.Group(basePath)
 	{
 		v1.GET("/books", handlers.ListBooksHandler)
-		v1.GET("/books", handlers.ShowBookHandler)
-		v1.POST("/books", handlers.CreateBookHandler)
-		v1.DELETE("/books", handlers.DeleteBookHandler)
-		v1.PUT("/books", handlers.UpdateBookHandler)
+		v1.GET("/book", handlers.ShowBookHandler)
+		v1.GET("/random-book", handlers.ShowRandomBookHandler)
+		v1.POST("/book", handlers.CreateBookHandler)
+		v1.DELETE("/book", handlers.DeleteBookHandler)
+		v1.PUT("/book", handlers.UpdateBookHandler)
 	}
 
-  router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 }
