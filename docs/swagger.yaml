@@ -1,0 +1,79 @@
+definitions:
+  handlers.CreateBookRequest:
+    properties:
+      author:
+        type: string
+      genre:
+        type: string
+      name:
+        type: string
+      year:
+        type: string
+    type: object
+  handlers.CreateBookResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.BookResponse'
+      message:
+        type: string
+    type: object
+  handlers.ErrorResponse:
+    properties:
+      errorCode:
+        type: string
+      message:
+        type: string
+    type: object
+  schemas.BookResponse:
+    properties:
+      author:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      genre:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updatedAt:
+        type: string
+      year:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /book:
+    post:
+      consumes:
+      - application/json
+      description: Create a new book entry
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.CreateBookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.CreateBookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: Create book
+      tags:
+      - Books
+swagger: "2.0"
