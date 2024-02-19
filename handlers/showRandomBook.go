@@ -8,6 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Random book
+// @Description Show random entry
+// @Tags Books
+// @Accept json
+// @Produce json
+// @Param request body BookRequest true "Request body"
+// @Success 200 {object} BookResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /random-book [get]
 func ShowRandomBookHandler(ctx *gin.Context) {
 	books := []schemas.Book{}
 	var bookCount int

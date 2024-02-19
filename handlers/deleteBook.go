@@ -1,4 +1,3 @@
-
 package handlers
 
 import (
@@ -9,6 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Delete book
+// @Description Delete a book entry
+// @Tags Books
+// @Accept json
+// @Produce json
+// @Param request body BookRequest true "Request body"
+// @Success 200 {object} BookResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /book [delete]
 func DeleteBookHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	if id == "" {

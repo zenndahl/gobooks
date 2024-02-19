@@ -1,5 +1,5 @@
 definitions:
-  handlers.CreateBookRequest:
+  handlers.BookRequest:
     properties:
       author:
         type: string
@@ -10,7 +10,7 @@ definitions:
       year:
         type: string
     type: object
-  handlers.CreateBookResponse:
+  handlers.BookResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.BookResponse'
@@ -47,6 +47,64 @@ info:
   contact: {}
 paths:
   /book:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a book entry
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.BookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: Delete book
+      tags:
+      - Books
+    get:
+      consumes:
+      - application/json
+      description: Show a specific book entry
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.BookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: Show book
+      tags:
+      - Books
     post:
       consumes:
       - application/json
@@ -57,14 +115,14 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/handlers.CreateBookRequest'
+          $ref: '#/definitions/handlers.BookRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handlers.CreateBookResponse'
+            $ref: '#/definitions/handlers.BookResponse'
         "400":
           description: Bad Request
           schema:
@@ -74,6 +132,66 @@ paths:
           schema:
             $ref: '#/definitions/handlers.ErrorResponse'
       summary: Create book
+      tags:
+      - Books
+  /books:
+    get:
+      consumes:
+      - application/json
+      description: List all books
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.BookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: List book
+      tags:
+      - Books
+  /random-book:
+    get:
+      consumes:
+      - application/json
+      description: Show random entry
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.BookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: Random book
       tags:
       - Books
 swagger: "2.0"

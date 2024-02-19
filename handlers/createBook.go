@@ -14,8 +14,8 @@ import (
 // @Tags Books
 // @Accept json
 // @Produce json
-// @Param request body CreateBookRequest true "Request body"
-// @Success 200 {object} CreateBookResponse
+// @Param request body BookRequest true "Request body"
+// @Success 200 {object} BookResponse
 // @Failure 400 {object} ErrorResponse
 // @Failure 500 {object} ErrorResponse
 // @Router /book [post]
